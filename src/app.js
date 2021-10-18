@@ -3,6 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const http = require('http');
 const {loginRouter} = require('./routers/loginRouter');
+const {authRouter} = require('./routers/authRouter');
 
 const app = express();
 const port = '3000';
@@ -13,6 +14,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/login', loginRouter);
+app.use('/refresh-token', authRouter);
 
 const server = http.createServer(app);
 
